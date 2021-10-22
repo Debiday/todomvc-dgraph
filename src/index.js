@@ -1,11 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import 'todomvc-app-css/index.css'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import TodoApp from './TodoApp'
+import TodoModel from './TodoModel'
 
+const model = new TodoModel('react-todos')
+
+function render() {
+  ReactDOM.render(
+    <TodoApp model={model}/>,
+    document.getElementById('root'),
+  )
+}
+
+model.subscribe(render)
+render()
